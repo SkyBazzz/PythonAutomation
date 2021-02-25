@@ -3,7 +3,7 @@ import sys
 
 # Task #1. Fizz Buzz
 def fizz_buzz():
-    for number in range(100):
+    for number in range(1, 100):
         if number % 3 == 0 and number % 5 != 0:
             print(f"{number} = Fizz")
         elif number % 3 != 0 and number % 5 == 0:

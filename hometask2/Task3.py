@@ -3,7 +3,7 @@ from json import dump
 
 
 # Task #3. Work with csv and json structures.
-def read_file(file_name: str):
+def transform_to_json(file_name: str):
     json_data = create_data_from_csv(file_name)
     write_to_json(json_data)
 
@@ -23,4 +23,4 @@ def write_to_json(data):
 
 
 if __name__ == '__main__':
-    read_file('cars.csv')
+    transform_to_json('cars.csv')

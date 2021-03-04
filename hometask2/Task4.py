@@ -1,9 +1,10 @@
 import os
 import sys
 import argparse
+import fnmatch
 
 
-# Task #4. Unix Find
+# Task #4. Unix find on windows. Example python Task4.py C:\ -name hometask2 -type d
 def find(folder, name=None, show_dirs=True, show_files=True):
     """
        :param folder: path to a system folder from where to start searching
@@ -11,11 +12,17 @@ def find(folder, name=None, show_dirs=True, show_files=True):
        :param show_dirs: if True - include directories into search results
        :param show_files: if True - include files into search results
        """
-    for root, dirs, files in os.walk(folder):
-        for name in files:
-            print(os.path.join(root, name))
-        for name in dirs:
-            print(os.path.join(root, name))
+    name = name if name is not None else '*'
+    if show_files:
+        for root, dirs, files in os.walk(folder):
+            for file_name in files:
+                if fnmatch.fnmatch(file_name, name):
+                    print(os.path.join(root, file_name))
+    if show_dirs:
+        for root, dirs, files in os.walk(folder):
+            for dir_name in dirs:
+                if fnmatch.fnmatch(dir_name, name):
+                    print(os.path.join(root, dir_name))
 
 
 def parse_cmd_args():
@@ -42,4 +49,5 @@ def parse_cmd_args():
 
 
 if __name__ == '__main__':
-    find(r'C:\Users\Oleksandr_Balkashyn\PycharmProjects')
+    path, f_name, show_d, show_f = parse_cmd_args()
+    find(path, f_name, show_d, show_f)

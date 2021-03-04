@@ -2,38 +2,30 @@ import sys
 from string import ascii_lowercase
 
 
-# Task #1. Fizz Buzz
-# def fizz_buzz():
-#     for number in range(1, 100):
-#         if number % 3 == 0 and number % 5 != 0:
-#             print("Fizz")
-#         elif number % 3 != 0 and number % 5 == 0:
-#             print("Buzz")
-#         elif number % 3 == 0 and number % 5 == 0:
-#             print("FizzBuzz")
-#         else:
-#             print(number)
+# Task  # 1. Fizz Buzz
+def fizz_buzz():
+    for number in range(1, 100):
+        if number % 3 == 0 and number % 5 != 0:
+            print("Fizz")
+        elif number % 3 != 0 and number % 5 == 0:
+            print("Buzz")
+        elif number % 3 == 0 and number % 5 == 0:
+            print("FizzBuzz")
+        else:
+            print(number)
 
 
 # Task #2. Find min and max
 def min_and_max():
     numbers = [1, 2, '0', '300', -2.5, 'Dog', True, 0o1256, None]
-    min_value = numbers[0]
-    max_value = numbers[0]
+    filtered_list = []
     for number in numbers:
         try:
-            value = int(number)
-            if value > max_value:
-                max_value = value
-            if value < min_value:
-                min_value = value
-            print(int(number))
-        except TypeError:
+            filtered_list.append(int(number))
+        except (TypeError, ValueError):
             pass
-        except ValueError:
-            pass
-    print(f"Min value is = {min_value}")
-    print(f"Max value is = {max_value}")
+    print(f"Min value is = {min(filtered_list)}")
+    print(f"Max value is = {max(filtered_list)}")
 
 
 # Task #3. Letters count. Python count.
@@ -105,7 +97,7 @@ def line_separator():
 
 
 if __name__ == '__main__':
-    # fizz_buzz()
+    fizz_buzz()
     line_separator()
     min_and_max()
     line_separator()

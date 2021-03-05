@@ -3,17 +3,28 @@ import prettytable
 import argparse
 import sys
 
+import win32security
+
 
 # Task #5. Unix ls -lh for windows without group and user
 def ls_lh(path):
     listdir = os.listdir(path)
     table = prettytable.PrettyTable()
-    table.field_names = ["Mode", "Size", "File Name"]
+    table.field_names = ["Mode", "Size", "User owner", "Group", "File name"]
 
     for file in listdir:
-        table.add_row([os.stat(file).st_mode, os.stat(file).st_size, file])
+        domain, name = file_owner(file)
+        stat = os.stat(file)
+        table.add_row([oct(stat.st_mode), stat.st_size, f'{domain}/{name}', stat.st_gid, file])
     table.align["Size"] = 'r'
     print(table.get_string(title="File Info", sortby="Size", reversesort=True))
+
+
+def file_owner(file):
+    sd = win32security.GetFileSecurity(file, win32security.OWNER_SECURITY_INFORMATION)
+    owner_sid = sd.GetSecurityDescriptorOwner()
+    name, domain, _ = win32security.LookupAccountSid(None, owner_sid)
+    return domain, name
 
 
 def parse_cmd_args():

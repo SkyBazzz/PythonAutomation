@@ -30,7 +30,6 @@ def setup_console_handler(console_lvl):
     formatter = logging.Formatter(FORMAT)
     console_handler.setLevel(console_lvl)
     console_handler.setFormatter(formatter)
-
     return console_handler
 
 

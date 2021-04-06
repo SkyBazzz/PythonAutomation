@@ -1,10 +1,13 @@
-import pytest
 import logging
 
 logger = logging.getLogger("conftest")
 
 
-@pytest.hookimpl(tryfirst=True)
 def pytest_sessionstart(session):
-    print("StartingXXX")
-    logger.debug("hello")
+    print("Even before session")
+    logger.debug(session)
+
+
+def pytest_sessionfinish(session):
+    print("After session ends")
+    logger.debug(session)

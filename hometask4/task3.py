@@ -1,4 +1,4 @@
-from abc import abstractmethod, ABCMeta
+from abc import ABCMeta
 
 
 class Company:
@@ -84,7 +84,7 @@ class Employee(Person):
     SALARY = 3
 
     def __init__(self, name, age, sex=None, address=None):
-        super(Employee, self).__init__(name, age, sex, address)
+        super().__init__(name, age, sex, address)
         self.company = None
         self.__money = 0
 
@@ -122,10 +122,10 @@ class Employee(Person):
     def put_money_into_my_wallet(self, amount):
         self.__money += amount
 
-    def do_work(self, salary):
-        self.put_money_into_my_wallet(salary)
-        self.company.balance = salary
-        print(f"{self.name} did some work + {salary}")
+    def do_work(self):
+        self.put_money_into_my_wallet(self.SALARY)
+        self.company.balance = self.SALARY
+        print(f"{self.name} did some work + {self.SALARY}")
 
     def __repr__(self):
         if self.is_employed:
@@ -137,14 +137,14 @@ class Engineer(Employee):
     SALARY = 10
 
     def do_work(self):
-        super().do_work(self.SALARY)
+        super().do_work()
 
 
 class Manager(Employee):
     SALARY = 12
 
     def do_work(self):
-        super().do_work(self.SALARY)
+        super().do_work()
 
 
 def check_yourself():

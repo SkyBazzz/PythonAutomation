@@ -4,14 +4,17 @@ import json
 import traceback
 import time
 
+from hometask5 import log
+
 
 def time_it(func):
     def timed(path):
         ts = time.time()
         result = func(path)
         te = time.time()
-        print((te - ts))
+        log.debug(te - ts)
         return result
+
     return timed
 
 
@@ -24,8 +27,7 @@ def verify_links(file_path):
             x = threading.Thread(target=verify_link, args=(link, objs))
             threads.append(x)
             x.start()
-        for index, thread in enumerate(threads):
-            print(index, thread.name)
+        for thread in threads:
             thread.join()
     write_result(objs)
 
@@ -41,7 +43,7 @@ def verify_link(link, objs):
     except Exception:
         traceback.print_exc()
         obj = {"url": f_link, "is_ok": False, "status_code": None}
-    print(f"{f_link} verified")
+    log.debug(f"{f_link} verified")
     objs.append(obj)
 
 

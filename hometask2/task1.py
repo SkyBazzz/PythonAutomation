@@ -1,3 +1,6 @@
+from hometask2 import log
+
+
 # Task #1. Filter list.
 def for_filtering(collection: list):
     values = list()
@@ -23,6 +26,6 @@ def is_int():
 
 if __name__ == '__main__':
     elements = [1, 2, '3', 4, None, 10, 33, 'Python', -37.5]
-    print(for_filtering(elements))
-    print(list_comprehension_filtering(elements))
-    print(lambda_filtering(elements))
+    log.info(for_filtering(elements))
+    log.info(list_comprehension_filtering(elements))
+    log.info(lambda_filtering(elements))

@@ -1,5 +1,7 @@
 from abc import ABCMeta
 
+from hometask4 import log
+
 
 class Company:
 
@@ -20,7 +22,7 @@ class Company:
             employee.notify_dismissed()
 
     def notify_im_leaving(self, employee):
-        print(f"{employee.name} is leaving {self.name}")
+        log.debug(f"{employee.name} is leaving {self.name}")
 
     def do_tasks(self, employee):
         if employee.company.name == self.name and isinstance(employee, Engineer):
@@ -34,14 +36,14 @@ class Company:
 
     def make_a_party(self, bonus=5):
         if self.__money > 0:
-            print(f"{self.name}. Party time! All employees get 5 money ")
+            log.debug(f"{self.name}. Party time! All employees get 5 money ")
             for employee in self.employees:
                 employee.bonus_to_salary(self, bonus)
         if self.__money < 0:
             self.go_bankrupt()
 
     def show_money(self):
-        print(f"{self.name} has {self.__money}")
+        log.debug(f"{self.name} has {self.__money}")
 
     @property
     def balance(self):
@@ -52,8 +54,8 @@ class Company:
         self.__money -= money
 
     def go_bankrupt(self):
-        print(f"{self.name} went bankrupt")
-        print(self.employees)
+        log.debug(f"{self.name} went bankrupt")
+        log.debug(self.employees)
         self.__money = 0
         for employee in self.employees:
             employee.notify_dismissed()
@@ -90,34 +92,34 @@ class Employee(Person):
 
     def join_company(self, company):
         if self.is_employed:
-            print(f'Ups, {self.name} is already haired')
+            log.debug(f'Ups, {self.name} is already haired')
         else:
             company.add_employee(self)
             self.company = company
-            print(f"{self.name} joined company {company.name}")
+            log.debug(f"{self.name} joined company {company.name}")
 
     def become_unemployed(self):
-        print(f"{self.name} became unemployed")
+        log.debug(f"{self.name} became unemployed")
         self.company.notify_im_leaving(self)
         self.company.employees.remove(self)
-        print(f"Leaving company {self.company.name}")
+        log.debug(f"Leaving company {self.company.name}")
         self.company = None
 
     def notify_dismissed(self):
-        print(f"{self.name} is dismissed ")
+        log.debug(f"{self.name} is dismissed ")
 
     def bonus_to_salary(self, company, reward=5):
         if self.company.name == company.name:
             self.__money += reward
             company.balance = reward
-            print(f"{self.name} got bonus({reward}) to salary")
+            log.debug(f"{self.name} got bonus({reward}) to salary")
 
     @property
     def is_employed(self):
         return self.company is not None
 
     def show_money(self):
-        print(f"{self.name} has {self.__money}")
+        log.debug(f"{self.name} has {self.__money}")
 
     def put_money_into_my_wallet(self, amount):
         self.__money += amount
@@ -125,7 +127,7 @@ class Employee(Person):
     def do_work(self):
         self.put_money_into_my_wallet(self.SALARY)
         self.company.balance = self.SALARY
-        print(f"{self.name} did some work + {self.SALARY}")
+        log.debug(f"{self.name} did some work + {self.SALARY}")
 
     def __repr__(self):
         if self.is_employed:
@@ -152,7 +154,7 @@ def check_yourself():
 
     # create first company
     fruits_company = Company('Fruits', address='Ocean street, 1')
-    print(fruits_company)
+    log.debug(fruits_company)
 
     # add some employees
     alex = Engineer('Alex', 55)
@@ -162,7 +164,7 @@ def check_yourself():
 
     # add second company
     doors_company = Company('Windows and doors', address='Mountain ave. 10')
-    print(doors_company)
+    log.debug(doors_company)
 
     # Alex wants to work for doors
     alex.join_company(doors_company)

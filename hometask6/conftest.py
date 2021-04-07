@@ -1,25 +1,22 @@
-import logging
-
 import pytest
 
-from hometask6.firm import Company
-
-logger = logging.getLogger("conftest")
+from hometask6 import log
+from hometask4.task3 import Company
 
 
 @pytest.fixture()
 def before_method():
-    logger.debug("Setup company")
+    log.debug("Setup company")
     fruits_company = Company('Fruits', address='Ocean street, 1')
     yield fruits_company
 
 
 def pytest_sessionstart(session):
-    logger.debug(f"Even before session - {session}")
+    log.debug(f"Even before session - {session}")
 
 
 def pytest_sessionfinish(session):
-    logger.debug(f"After session ends - {session}")
+    log.debug(f"After session ends - {session}")
 
 
 def pytest_html_report_title(report):

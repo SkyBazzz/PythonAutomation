@@ -1,18 +1,19 @@
 import sys
 from string import ascii_lowercase
+from hometask1 import log
 
 
 # Task  # 1. Fizz Buzz
 def fizz_buzz():
     for number in range(1, 100):
         if number % 3 == 0 and number % 5 != 0:
-            print("Fizz")
+            log.debug("Fizz")
         elif number % 3 != 0 and number % 5 == 0:
-            print("Buzz")
+            log.debug("Buzz")
         elif number % 3 == 0 and number % 5 == 0:
-            print("FizzBuzz")
+            log.debug("FizzBuzz")
         else:
-            print(number)
+            log.debug(number)
 
 
 # Task #2. Find min and max
@@ -24,8 +25,8 @@ def min_and_max():
             filtered_list.append(int(number))
         except (TypeError, ValueError):
             pass
-    print(f"Min value is = {min(filtered_list)}")
-    print(f"Max value is = {max(filtered_list)}")
+    log.debug(f"Min value is = {min(filtered_list)}")
+    log.debug(f"Max value is = {max(filtered_list)}")
 
 
 # Task #3. Letters count. Python count.
@@ -38,9 +39,9 @@ def letters_count():
             accuracy += formatted_line.count('python')
             count_letters(dictionary, formatted_line)
 
-    print(f"Word Python (ignore case) was presented {accuracy} time(s).")
+    log.debug(f"Word Python (ignore case) was presented {accuracy} time(s).")
     most_freq_letter = max(dictionary, key=dictionary.get)
-    print(f"Most frequently used letter is {most_freq_letter} - {dictionary[most_freq_letter]} time(s).")
+    log.debug(f"Most frequently used letter is {most_freq_letter} - {dictionary[most_freq_letter]} time(s).")
 
 
 def count_letters(dictionary, line):
@@ -93,7 +94,7 @@ def file_size(size):
 
 
 def line_separator():
-    print("=" * 25)
+    log.debug("=" * 25)
 
 
 if __name__ == '__main__':
@@ -104,19 +105,19 @@ if __name__ == '__main__':
     letters_count()
     line_separator()
     i = 10000000
-    print(f"Result {multiples_3_5_sum(i)}")
+    log.debug(f"Result {multiples_3_5_sum(i)}")
     line_separator()
-    print(f"Result {loops(i)}")
+    log.debug(f"Result {loops(i)}")
     line_separator()
     assert file_size(19) == '19.0B'
     assert file_size(12345) == '12.1Kb'
     assert file_size(1101947) == '1.1Mb'
     assert file_size(572090) == '558.7Kb'
     assert file_size(999999999999) == '931.3Gb'
-    print(file_size(19))
-    print(file_size(12345))
-    print(file_size(1101947))
-    print(file_size(572090))
-    print(file_size(9223372036854776000))
+    log.debug(file_size(19))
+    log.debug(file_size(12345))
+    log.debug(file_size(1101947))
+    log.debug(file_size(572090))
+    log.debug(file_size(9223372036854776000))
     line_separator()
-    print(file_size(sys.maxsize))
+    log.debug(file_size(sys.maxsize))

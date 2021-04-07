@@ -8,6 +8,8 @@ from multiprocessing import Process
 from functools import wraps
 import time
 
+from hometask5 import log
+
 
 def time_it(func):
     @wraps(func)
@@ -15,7 +17,7 @@ def time_it(func):
         ts = time.time()
         result = func()
         te = time.time()
-        print(f"{func.__name__} -> {te - ts}")
+        log.info(f"{func.__name__} -> {te - ts}")
         return result
 
     return timed
@@ -68,14 +70,9 @@ def math_formula():
     return res
 
 
-@time_it
-def run_all_calculations_in_parallel():
+def run_all_calculations_in_parallel(*functions):
     # Use multiprocessing library to run all above functions in parallel
     # Print execution time of each function
-    run_in_parallel(simple_iteration, several_for_loops, iterate_over_fifteen, math_formula)
-
-
-def run_in_parallel(*functions):
     proc = []
     for function in functions:
         process = Process(target=function)
@@ -86,4 +83,4 @@ def run_in_parallel(*functions):
 
 
 if __name__ == '__main__':
-    run_all_calculations_in_parallel()
+    run_all_calculations_in_parallel(simple_iteration, several_for_loops, iterate_over_fifteen, math_formula)

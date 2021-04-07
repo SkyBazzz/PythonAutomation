@@ -1,7 +1,7 @@
 import pytest
 import logging
 import time
-from hometask6.firm import Engineer, Manager
+from hometask4.task3 import Engineer, Manager
 
 logger = logging.getLogger("test_task1")
 

@@ -6,6 +6,9 @@ import win32security
 
 
 # Task #5. Unix ls -lh for windows without group and user
+from hometask2 import log
+
+
 def ls_lh(path):
     listdir = os.listdir(path)
     table = prettytable.PrettyTable()
@@ -17,7 +20,7 @@ def ls_lh(path):
         stat = os.stat(file)
         table.add_row([oct(stat.st_mode), stat.st_size, f'{domain}/{name}', stat.st_gid, file])
     table.align["Size"] = 'r'
-    print(table.get_string(title="File Info", sortby="Size", reversesort=True))
+    log.info(table.get_string(title="File Info", sortby="Size", reversesort=True))
 
 
 def file_owner(file):

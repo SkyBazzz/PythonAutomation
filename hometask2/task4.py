@@ -3,7 +3,10 @@ import argparse
 import fnmatch
 
 
-# Task #4. Unix find on windows. Example python Task4.py C:\ -name hometask2 -type d
+# Task #4. Unix find on windows. Example python task4.py C:\ -name hometask2 -type d
+from hometask2 import log
+
+
 def find(folder, name=None, show_dirs=True, show_files=True):
     """
        :param folder: path to a system folder from where to start searching
@@ -22,7 +25,7 @@ def find(folder, name=None, show_dirs=True, show_files=True):
 def find_object(o_path, name, root):
     for file_name in o_path:
         if fnmatch.fnmatch(file_name, name):
-            print(os.path.join(root, file_name))
+            log.info(os.path.join(root, file_name))
 
 
 def parse_cmd_args():

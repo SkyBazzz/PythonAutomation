@@ -12,8 +12,6 @@ def setup_module():
 
 @pytest.mark.smoke
 def test_passed(before_method):
-    time.sleep(2)
-
     # add some employees
     alex = Engineer('Alex', 55)
     alex.join_company(before_method)
@@ -29,5 +27,4 @@ def test_passed(before_method):
 
 @pytest.mark.xfail
 def test_failed():
-    time.sleep(2)
     assert False

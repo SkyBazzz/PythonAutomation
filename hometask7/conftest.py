@@ -1,6 +1,6 @@
 import pytest
 
-from hometask6 import log
+from hometask7 import log
 from hometask4.task3 import Alex
 
 

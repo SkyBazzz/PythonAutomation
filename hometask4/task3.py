@@ -1,4 +1,5 @@
 from abc import ABCMeta
+from typing import Any
 
 from hometask4 import log
 
@@ -147,6 +148,16 @@ class Manager(Employee):
 
     def do_work(self):
         super().do_work()
+
+
+class Alex(Engineer):
+    _instances = {}
+
+    def __new__(cls, **kwargs) -> Any:
+        if cls not in cls._instances:
+            instance = super()
+            cls._instances[cls] = instance
+        return cls._instances[cls]
 
 
 def check_yourself():

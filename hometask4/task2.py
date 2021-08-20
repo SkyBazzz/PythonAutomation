@@ -20,5 +20,6 @@ class Timer:
 
 if __name__ == '__main__':
     with Timer("peace of code") as timer:
-        for number in range(10):
+        for number in range(1, 11):
             time.sleep(1)
+            log.info(number)
